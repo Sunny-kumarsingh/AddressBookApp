@@ -2,23 +2,36 @@ package com.addressbook.addressbookapp.main;
 import java.util.*;
 
 import com.addressbook.addressbookapp.model.AddressBook;
+import com.addressbook.addressbookapp.model.AddressBookSystem;
 import com.addressbook.addressbookapp.model.Contact;
 
 public class AddressBookMain {
 	static Scanner sc = new Scanner(System.in);
-	static AddressBook addressBook = new AddressBook();
+	static AddressBookSystem system = new AddressBookSystem();
+	
 	public static void main(String[] args) {
-		addressBook.addContact(takeInput());
-		
+		System.out.println("--Welcome to Address Book Program--");
+
+        // Create AddressBook
+        System.out.println("Enter AddressBook name: ");
+        String bookName = sc.nextLine();
+
+        system.addAddressBook(bookName);
+
+        AddressBook addressBook = system.getAddressBook(bookName);
+
+        // Add contact
+        addressBook.addContact(takeInput());
+        		
 		System.out.println("Enter first name to edit contact: ");
 		String updateName = sc.nextLine();
 		
 		if(!addressBook.findByName(updateName)) {
 			System.out.println("First name not found! so we can't update!");
 			return;
+		}else {
+			addressBook.editContactByName(updateName, takeInput());
 		}
-		
-		addressBook.editContactByName(updateName, takeInput());
 		
 		System.out.println("Enter first name to delete contact : ");
 		String deleteName = sc.nextLine();
@@ -26,9 +39,9 @@ public class AddressBookMain {
 		if(!addressBook.findByName(deleteName)) {
 			System.out.println("First name not found! so we can't delete");
 			return;
+		}else {
+			addressBook.deleteContactByName(deleteName);		
 		}
-		
-		addressBook.deleteContactByName(deleteName);		
 	}
 	
 	public static Contact takeInput() {

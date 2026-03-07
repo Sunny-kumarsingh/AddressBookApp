@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBook {
-	static List<Contact> contactList = new ArrayList<>();
+	private List<Contact> contactList = new ArrayList<>();	
+
+	public List<Contact> getContactList() {
+		return contactList;
+	}
 	
 	//add contact
 	public void addContact(Contact contact) {
@@ -39,11 +43,19 @@ public class AddressBook {
 	}
 	
 	public void deleteContactByName(String name) {
+		Contact removeContact = null;
 		for(Contact c : contactList) {
 			if(c.getFirstName().equalsIgnoreCase(name)) {
-				contactList.remove(c);
-				return;
+				removeContact = c;
+				break;
 			}
+		}
+		if(removeContact!=null) {
+			contactList.remove(removeContact);
+			System.out.println("contact deleted!");
+			return;
+		}else {
+			System.out.println("contact not found by name!");
 		}
 	}
 }
