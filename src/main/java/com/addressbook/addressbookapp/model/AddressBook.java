@@ -12,7 +12,12 @@ public class AddressBook {
 	
 	//add contact
 	public void addContact(Contact contact) {
+		if(duplicateCheck(contact)) {
+	        System.out.println("Duplicate contact! Cannot add.");
+	        return;
+	    }
 		contactList.add(contact);
+		System.out.println("Contact Added");
 	}
 	
 	//editContactByName
@@ -56,6 +61,25 @@ public class AddressBook {
 			return;
 		}else {
 			System.out.println("contact not found by name!");
+		}
+	}
+	
+	public boolean duplicateCheck(Contact contact) {
+		for(Contact c : contactList) {
+			if(c.equals(contact)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void getAllContact() {
+		if(contactList.isEmpty()) {
+			System.out.println("contact list is empty!");
+			return;
+		}
+		for(Contact c : contactList) {
+			System.out.println(c);
 		}
 	}
 }
