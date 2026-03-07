@@ -23,7 +23,7 @@ public class AddressBook {
 				c.setZip(contact.getZip());
 				c.setPhoneNumber(contact.getPhoneNumber());
 				c.setEmail(contact.getEmail());
-				System.out.println("contact udpated");
+				System.out.println("contact udpated.");
 				return;
 			}
 		}

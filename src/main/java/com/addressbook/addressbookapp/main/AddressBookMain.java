@@ -20,7 +20,7 @@ public class AddressBookMain {
 		
 		addressBook.editContactByName(updateName, takeInput());
 		
-		System.out.println("Enter first name to delete contact: ");
+		System.out.println("Enter first name to delete contact : ");
 		String deleteName = sc.nextLine();
 		
 		if(!addressBook.findByName(deleteName)) {
