@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBook {
-	List<Contact> contactList = new ArrayList<>();
+	static List<Contact> contactList = new ArrayList<>();
 	
 	//add contact
 	public void addContact(Contact contact) {
@@ -27,7 +27,6 @@ public class AddressBook {
 				return;
 			}
 		}
-		System.out.println("contact not found by name: "+name);
 	}
 	
 	public boolean findByName(String name) {
@@ -37,5 +36,14 @@ public class AddressBook {
 			}
 		}
 		return false;
+	}
+	
+	public void deleteContactByName(String name) {
+		for(Contact c : contactList) {
+			if(c.getFirstName().equalsIgnoreCase(name)) {
+				contactList.remove(c);
+				return;
+			}
+		}
 	}
 }
