@@ -17,6 +17,7 @@ public class AddressBookMain {
 			System.out.println("Update Contact -> Enter '2': ");
 			System.out.println("Delete Contact -> Enter '3': ");
 			System.out.println("View All Contact -> Enter '4': ");
+			System.out.println("Search person by city -> Enter '5': ");
 			System.out.println("Exit -> Enter '0': ");
 			System.out.println("--------------------------------------------------");
 			
@@ -66,6 +67,12 @@ public class AddressBookMain {
 				case 4: 
 					addressBook.getAllContact();
 					break;
+				case 5:
+					System.out.println("Enter person first name and last name");
+					String name = sc.nextLine();
+					System.out.println("Enter city name to search: ");
+					String city = sc.nextLine();
+					addressBook.searchPerson(name, city);
 				default:
 					System.out.println("Invalid choise!");
 			}
