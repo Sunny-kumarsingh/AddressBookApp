@@ -21,6 +21,7 @@ public class AddressBookMain {
 			System.out.println("View person by state -> Enter '6': ");
 			System.out.println("Count Contact by city -> Enter '7': ");
 			System.out.println("Sort Contact by alphabetically -> Enter '8':");
+			System.out.println("Sort Contact by ZIP -> Enter '9':");
 			System.out.println("Exit -> Enter '0': ");
 			System.out.println("--------------------------------------------------");
 			
@@ -97,6 +98,9 @@ public class AddressBookMain {
 					addressBook = chooseAddressBook();
 					addressBook.sortByAlphabetically();
 					break;
+				case 9:
+					addressBook = chooseAddressBook();
+					addressBook.sortByZIP();
 				default:
 					System.out.println("Invalid choise!");
 			}
