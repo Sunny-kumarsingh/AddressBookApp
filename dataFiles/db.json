@@ -1,0 +1,16 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Arvind",
+      "lastName": "Kumar",
+      "city": "Visakhapatnam"
+    },
+    {
+      "id": 2,
+      "firstName": "Rahul",
+      "lastName": "Sharma",
+      "city": "Delhi"
+    }
+  ]
+}
