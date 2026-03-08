@@ -1,60 +1,32 @@
 package com.addressbook.addressbookapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@Entity
-@Getter
-@Setter
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Contact {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String city;
-    private String state;
-    private String zip;
-    private String phoneNumber;
-    private String email;
-    
-    
-    
-    public Contact() {}   // JPA needs default constructor
-
-    public Contact(String firstName, String lastName, String address,
-                   String city, String state, String zip,
-                   String phoneNumber, String email) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
-    
-    
-	public Long getUserId() {
+	private static long counter = 101;
+	private long userId;
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String phoneNumber;
+	private String email;
+	public Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email) {
+		this.userId = ++counter;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+	
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	public String getFirstName() {
@@ -110,5 +82,19 @@ public class Contact {
 		return "Contact [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", address="
 				+ address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + "]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj==this) {
+			return true;
+		}
+		
+		if(obj==null || obj.getClass()!=this.getClass()) {
+			return false;
+		}
+		
+		Contact other = (Contact)obj;
+		return firstName.equalsIgnoreCase(other.firstName) && lastName.equalsIgnoreCase(other.lastName);
 	}
 }
