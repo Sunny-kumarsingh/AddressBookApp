@@ -27,6 +27,7 @@ public class AddressBookMain {
 			System.out.println("Sort Contact by alphabetically -> Enter '8':");
 			System.out.println("Sort Contact by ZIP -> Enter '9':");
 			System.out.println("Read Contact From File -> Enter '10': ");
+			System.out.println("Read Contact From CSV File -> Enter '11': ");
 			System.out.println("Exit -> Enter '0': ");
 			System.out.println("--------------------------------------------------");
 			
@@ -115,8 +116,18 @@ public class AddressBookMain {
 			        }
 
 			        addressBook = system.getAddressBook(bookNames);
-					readContactFromFile(addressBook);
+					readContactFromFile(addressBook,"dataFiles/contacts.txt");
 					break;
+				case 11:
+					System.out.println("Enter AddressBook name: ");
+			        String bookNamesCSV = sc.nextLine();
+					if(!system.exists(bookNamesCSV)) {
+			            system.addAddressBook(bookNamesCSV);
+			        }
+
+			        addressBook = system.getAddressBook(bookNamesCSV);
+			        readContactFromFile(addressBook, "dataFiles/contacts.csv");
+			        break;
 				default:
 					System.out.println("Invalid choise!");
 			}
@@ -178,8 +189,8 @@ public class AddressBookMain {
 		return book;
 	}
 	
-	public static void readContactFromFile(AddressBook addressBook) {
-		try (BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream("dataFiles/contacts.txt")))) {
+	public static void readContactFromFile(AddressBook addressBook, String filePath) {
+		try (BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)))) {
 			String line;
 			while((line = read.readLine())!=null) {
 				String data[] = line.split(",");
