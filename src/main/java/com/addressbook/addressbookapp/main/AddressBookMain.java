@@ -20,6 +20,7 @@ public class AddressBookMain {
 			System.out.println("Search person by city -> Enter '5': ");
 			System.out.println("View person by state -> Enter '6': ");
 			System.out.println("Count Contact by city -> Enter '7': ");
+			System.out.println("Sort Contact by alphabetically -> Enter '8':");
 			System.out.println("Exit -> Enter '0': ");
 			System.out.println("--------------------------------------------------");
 			
@@ -37,14 +38,15 @@ public class AddressBookMain {
 					System.out.println("Enter AddressBook name: ");
 			        String bookName = sc.nextLine();
 
-			        system.addAddressBook(bookName);
+			        if(!system.exists(bookName)) {
+			            system.addAddressBook(bookName);
+			        }
 
 			        addressBook = system.getAddressBook(bookName);
-
-			        // Add contact
 			        addressBook.addContact(takeInput());
 					break;
 				case 2:
+					addressBook = chooseAddressBook();
 					System.out.println("Enter first name to edit contact: ");
 					String updateName = sc.nextLine();
 					
@@ -56,6 +58,7 @@ public class AddressBookMain {
 					}
 					break;
 				case 3:
+					addressBook = chooseAddressBook();
 					System.out.println("Enter first name to delete contact : ");
 					String deleteName = sc.nextLine();
 					
@@ -67,22 +70,33 @@ public class AddressBookMain {
 					}
 					break;
 				case 4: 
+					addressBook = chooseAddressBook();
 					addressBook.getAllContact();
 					break;
 				case 5:
+					addressBook = chooseAddressBook();
 					System.out.println("Enter person first name and last name");
 					String name = sc.nextLine();
 					System.out.println("Enter city name to search: ");
 					String city = sc.nextLine();
 					addressBook.searchPerson(name, city);
+					break;
 				case 6:
+					addressBook = chooseAddressBook();
 					System.out.println("Enter the state name: ");
 					String statemName = sc.nextLine();
 					addressBook.viewByState(statemName);
+					break;
 				case 7:
+					addressBook = chooseAddressBook();
 					System.out.println("Enter city name: ");
 					String cityName = sc.next();
 					addressBook.countNumberByCity(cityName);
+					break;
+				case 8:
+					addressBook = chooseAddressBook();
+					addressBook.sortByAlphabetically();
+					break;
 				default:
 					System.out.println("Invalid choise!");
 			}
@@ -120,5 +134,27 @@ public class AddressBookMain {
 		String email = sc.nextLine();
 		
 		return new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+	}
+	
+	public static AddressBook chooseAddressBook() {
+		System.out.println("Enter AddressBook name:");
+		String bookName = sc.nextLine();
+
+		AddressBook book = system.getAddressBook(bookName);
+		while(book==null) {
+			System.out.println("AddressBook not found! please choise these following!");
+			System.out.println("====================");
+			system.listAllAddressBooks();
+			System.out.println("====================");
+			while(true) {
+				System.out.println("\nEnter AddressBook name:");
+				String bookN = sc.nextLine();
+				book = system.getAddressBook(bookN);
+				if(bookN!=null) {
+					break;
+				}
+			}
+		}
+		return book;
 	}
 }

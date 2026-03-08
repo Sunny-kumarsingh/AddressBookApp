@@ -2,7 +2,6 @@ package com.addressbook.addressbookapp.model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class AddressBookSystem {
 	Map<String, AddressBook> addressbooksystem = new HashMap<>();
@@ -16,11 +15,15 @@ public class AddressBookSystem {
 		addressbooksystem.put(name, new AddressBook());
 	}
 	
+	public boolean exists(String name) {
+	    return addressbooksystem.containsKey(name);
+	}
+	
 	public AddressBook getAddressBook(String name) {
 		return addressbooksystem.get(name);
 	}
 	
-	public Set<String> listAllAddressBooks() {
-		return addressbooksystem.keySet();
+	public void listAllAddressBooks() {
+		addressbooksystem.keySet().forEach(System.out::println);
 	}
 }
