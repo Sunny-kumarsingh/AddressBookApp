@@ -19,6 +19,7 @@ public class AddressBookMain {
 			System.out.println("View All Contact -> Enter '4': ");
 			System.out.println("Search person by city -> Enter '5': ");
 			System.out.println("View person by state -> Enter '6': ");
+			System.out.println("Count Contact by city -> Enter '7': ");
 			System.out.println("Exit -> Enter '0': ");
 			System.out.println("--------------------------------------------------");
 			
@@ -74,11 +75,14 @@ public class AddressBookMain {
 					System.out.println("Enter city name to search: ");
 					String city = sc.nextLine();
 					addressBook.searchPerson(name, city);
-					break;
 				case 6:
 					System.out.println("Enter the state name: ");
 					String statemName = sc.nextLine();
 					addressBook.viewByState(statemName);
+				case 7:
+					System.out.println("Enter city name: ");
+					String cityName = sc.next();
+					addressBook.countNumberByCity(cityName);
 				default:
 					System.out.println("Invalid choise!");
 			}
