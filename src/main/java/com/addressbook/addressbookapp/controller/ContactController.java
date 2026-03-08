@@ -45,4 +45,11 @@ public class ContactController {
 		Contact contactData = addressBookService.updateContact(id, contact);
 		return ResponseEntity.ok(contactData);
 	}
+	
+	
+	//Ability to Retrieve number of Contacts in the Database by City
+	@GetMapping("/contacts/city/{city}")
+	public List<Contact> getAllContactsByCity(@PathVariable String city){
+		return addressBookService.findAllContactByCity(city);
+	}
 }

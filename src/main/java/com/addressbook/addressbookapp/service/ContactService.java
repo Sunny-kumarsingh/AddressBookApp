@@ -51,4 +51,9 @@ public class ContactService {
 		stored.setEmail(newContact.getEmail());
 		return contactRepository.save(stored);
 	}
+	
+	//Ability to Retrieve number of Contacts in the Database by City
+	public List<Contact> findAllContactByCity(String city) {
+		return contactRepository.findByCityIgnoreCase(city);
+	}
 }
