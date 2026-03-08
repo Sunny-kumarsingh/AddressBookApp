@@ -37,4 +37,18 @@ public class ContactService {
 		return contactRepository.findById(id)
 							.orElseThrow(()-> new ContactNotFoundException("Contact not found with id: "+id));
 	}
+	
+	//update the Contact
+	public Contact updateContact(Long id, Contact newContact) {
+		Contact stored = getById(id);
+		stored.setFirstName(newContact.getFirstName());
+		stored.setLastName(newContact.getLastName());
+		stored.setAddress(newContact.getAddress());
+		stored.setCity(newContact.getCity());
+		stored.setState(newContact.getState());
+		stored.setZip(newContact.getZip());
+		stored.setPhoneNumber(newContact.getPhoneNumber());
+		stored.setEmail(newContact.getEmail());
+		return contactRepository.save(stored);
+	}
 }
